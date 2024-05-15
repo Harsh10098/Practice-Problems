@@ -89,3 +89,28 @@ console.log(checkingSudoku([["8","3",".",".","7",".",".",".","."]
 ,[".","6",".",".",".",".","2","8","."]
 ,[".",".",".","4","1","9",".",".","5"]
 ,[".",".",".",".","8",".",".","7","9"]]))
+
+
+
+/*
+    Optimized Version:
+
+    function checkSudoku(board) {
+        let answer = new Array(27).fill().map(() => new Set());
+        for (let i=0; i<9; i++){
+            for (let j=0; j<9; j++){
+                const item = board[i][j];
+                if (item !== '.'){
+                    if (answer[i].has(item)) return false
+                    else answer[i].add(item)
+                    if (answer[9+j].has(item)) return false
+                    else answer[9+j].add(item)
+                    const index = 3*Math.floor(i/3) + Math.floor(j/3);
+                    if (answer[18+index].has(item)) return false
+                    else answer[18+index].add(item)
+                }
+            }
+        }
+        return true;
+    }
+*/ 
